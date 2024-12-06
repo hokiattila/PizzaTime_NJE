@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaTime Navbar</title>
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <!-- Márka/logó -->
+            <a class="navbar-brand" href="/">PizzaTime</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <!-- Bal oldali navigációs menü -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Főoldal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pizza">Ajánlataink</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <i class="fas fa-shopping-cart"></i> Kosár
+                        </a>
+                    </li>
+                </ul>
+                <!-- Jobb oldali menü -->
+                <ul class="navbar-nav">
+                    <!-- Ha nincs bejelentkezve -->
+                    <li th:if="${#authentication.name == 'anonymousUser'}" class="nav-item">
+                        <a class="nav-link" href="/login">Belépés</a>
+                    </li>
+                    <li th:if="${#authentication.name == 'anonymousUser'}" class="nav-item">
+                        <a class="nav-link" href="/registration">Regisztráció</a>
+                    </li>
+                    <!-- Ha be van jelentkezve -->
+                    <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item">
+                        <a class="nav-link" th:href="@{'/user/' + ${#authentication.principal.id}}">
+                            <i class="fas fa-user"></i> <span th:text="${#authentication.name}">Felhasználó</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</th:block>
+<!-- Lokális Bootstrap JS -->
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

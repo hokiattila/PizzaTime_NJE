@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaTime - A város legjobb pizzériája!</title>
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<!-- Navigációs bar beillesztése -->
+<div th:replace="layout/navbar :: navbar"></div>
+
+<!-- Főoldal tartalma -->
+<div class="container">
+    <h1>Üdvözlünk a PizzaTime-on!</h1>
+    <p>Éhes vagy? Nézd meg ajánlatainkat!</p>
+    <img th:src="@{/img/pizzatime.gif}" alt="Pizza Time" class="img-fluid">
+</div>
+
+<!-- jQuery -->
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<!-- Bootstrap Bundle JS (tartalmazza a Popper.js-t is) -->
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>
