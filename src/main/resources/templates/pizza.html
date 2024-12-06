@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaTime - Ajánlataink</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .pizza-img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .quantity-input {
+            width: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="layout/navbar :: navbar"></div>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Ajánlataink</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="pizza : ${pizzas}">
+            <div class="card text-center">
+                <img th:src="@{/img/{img}(img=${pizza.img})}" class="pizza-img card-img-top"
+                     th:alt="${pizza.nev}" onerror="this.src='/img/pizza.png'">
+                <div class="card-body">
+                    <h5 class="card-title text-center" th:text="${pizza.nev}">Pizza név</h5>
+                    <p class="card-text text-center">
+                        Ár: <span th:text="${pizza.ar} + ' Ft'">Ár</span> <br>
+                        <span th:if="${pizza.vegetarianus}" class="text-success">Vegetáriánus</span>
+                        <span th:if="${!pizza.vegetarianus}" class="text-danger">Nem vegetáriánus</span>
+                    </p>
+                    <!-- Form a rendeléshez -->
+                    <form th:action="@{/order}" method="post">
+                        <input type="hidden" name="pizzaName" th:value="${pizza.nev}">
+                        <div class="mb-3 text-center">
+                            <label for="quantity" class="form-label">Db:</label>
+                            <input type="number" class="form-control quantity-input mx-auto" id="quantity" name="quantity" value="1" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kosárba</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lokális Bootstrap JS -->
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

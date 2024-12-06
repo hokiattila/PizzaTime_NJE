@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PizzaTime - Regisztráció</title>
+  <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
   <!-- Bootstrap CSS -->
   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
@@ -15,46 +16,96 @@
 <div class="container mt-5">
   <h1 class="mb-4">Regisztráció</h1>
   <form th:action="@{/register}" method="post">
+    <!-- Általános hibaüzenetek -->
+    <div th:if="${validationErrors}" class="alert alert-danger">
+      <ul>
+        <li th:each="error : ${validationErrors}" th:text="${error.defaultMessage}"></li>
+      </ul>
+    </div>
+
     <!-- Felhasználói adatok -->
     <h2 class="mt-4">Felhasználói adatok</h2>
     <div class="mb-3">
       <label for="username" class="form-label">Felhasználónév</label>
       <input type="text" class="form-control" id="username" name="username" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'username'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
       <input type="email" class="form-control" id="email" name="email" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'email'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Jelszó</label>
       <input type="password" class="form-control" id="password" name="password" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'password'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
       <label for="confirmPassword" class="form-label">Jelszó megerősítése</label>
       <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+      <div th:if="${passwordError}" class="text-danger">
+        <p th:text="${passwordError}"></p>
+      </div>
     </div>
 
     <!-- Szállítási adatok -->
     <h2 class="mt-5">Szállítási adatok</h2>
     <div class="mb-3">
-      <label for="fullName" class="form-label">Teljes név</label>
-      <input type="text" class="form-control" id="fullName" name="fullName" required>
+      <label for="name" class="form-label">Teljes név</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'name'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
       <label for="address" class="form-label">Cím</label>
       <input type="text" class="form-control" id="address" name="address" placeholder="Utca, házszám" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'address'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
       <label for="city" class="form-label">Város</label>
       <input type="text" class="form-control" id="city" name="city" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'city'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
-      <label for="postalCode" class="form-label">Irányítószám</label>
-      <input type="text" class="form-control" id="postalCode" name="postalCode" required>
+      <label for="zip" class="form-label">Irányítószám</label>
+      <input type="text" class="form-control" id="zip" name="zip" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'zip'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
     <div class="mb-3">
-      <label for="phoneNumber" class="form-label">Telefonszám</label>
-      <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" required>
+      <label for="phone" class="form-label">Telefonszám</label>
+      <input type="tel" class="form-control" id="phone" name="phone" required>
+      <div th:each="error : ${validationErrors}"
+           th:if="${error.field == 'phone'}"
+           class="text-danger">
+        <p th:text="${error.defaultMessage}"></p>
+      </div>
     </div>
 
     <!-- Regisztráció gomb -->

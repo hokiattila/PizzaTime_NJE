@@ -20,9 +20,6 @@
                 <!-- Bal oldali navigációs menü -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Főoldal</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/pizza">Ajánlataink</a>
                     </li>
                     <li class="nav-item">
@@ -44,6 +41,11 @@
                     <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item">
                         <a class="nav-link" th:href="@{'/user/' + ${#authentication.principal.id}}">
                             <i class="fas fa-user"></i> <span th:text="${#authentication.name}">Felhasználó</span>
+                        </a>
+                    </li>
+                    <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item">
+                        <a class="nav-link" th:href="@{'/logout'}">
+                            <i class="fas fa-user"></i> <span th:text="Kijelentkezés"></span>
                         </a>
                     </li>
                 </ul>
