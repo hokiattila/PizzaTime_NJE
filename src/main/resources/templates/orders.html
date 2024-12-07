@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rendelések</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="layout/navbar :: navbar"></div>
+<div class="container mt-5">
+  <h1>Rendelések</h1>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Pizza név</th>
+      <th>Felhasználó ID</th>
+      <th>Darab</th>
+      <th>Felvétel dátuma</th>
+      <th>Kiszállítás dátuma</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+      <td th:text="${order.pizzanev}"></td>
+      <td th:text="${order.userid}"></td>
+      <td th:text="${order.db}"></td>
+      <td th:text="${order.felvetel}"></td>
+      <td th:text="${order.kiszallitas}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

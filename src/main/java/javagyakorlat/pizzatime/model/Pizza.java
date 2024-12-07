@@ -26,7 +26,6 @@ public class Pizza {
     @NotNull(message = "A vegetáriánus mező nem lehet üres!")
     private Boolean vegetarianus;
 
-    // Getters és Setters
     public String getNev() {
         return nev;
     }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Kosár</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="layout/navbar :: navbar"></div>
+<div class="container mt-5">
+  <h1>Kosár</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Pizza</th>
+      <th>Mennyiség</th>
+      <th>Ár</th>
+      <th>Összesen</th>
+      <th>Művelet</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cart.items}">
+      <td th:text="${item.pizza.nev}"></td>
+      <td th:text="${item.quantity}"></td>
+      <td th:text="${item.pizza.ar} + ' Ft'"></td>
+      <td th:text="${item.totalPrice} + ' Ft'"></td>
+      <td>
+        <form th:action="@{/cart/remove}" method="post">
+          <input type="hidden" name="pizzaNev" th:value="${item.pizza.nev}">
+          <button type="submit" class="btn btn-danger">Törlés</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <h3>Összesen: <span th:text="${cart.totalPrice} + ' Ft'"></span></h3>
+
+  <!-- POST form a vásárlás befejezéséhez -->
+  <form th:action="@{/cart/order/complete}" method="post">
+    <button type="submit" class="btn btn-primary">Tovább a vásárláshoz</button>
+  </form>
+</div>
+
+<!-- Lokális Bootstrap JS -->
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

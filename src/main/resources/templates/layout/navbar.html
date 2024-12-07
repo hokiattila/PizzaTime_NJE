@@ -37,16 +37,18 @@
                     <li th:if="${#authentication.name == 'anonymousUser'}" class="nav-item">
                         <a class="nav-link" href="/registration">Regisztráció</a>
                     </li>
-                    <!-- Ha be van jelentkezve -->
-                    <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item">
-                        <a class="nav-link" th:href="@{'/user/' + ${#authentication.principal.id}}">
-                            <i class="fas fa-user"></i> <span th:text="${#authentication.name}">Felhasználó</span>
-                        </a>
+                    <!-- Admin Panel menüpont -->
+                    <li th:if="${#authentication.name == 'admin'}" class="nav-item">
+                        <a class="nav-link" href="/orders">Rendelések</a>
                     </li>
-                    <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item">
-                        <a class="nav-link" th:href="@{'/logout'}">
-                            <i class="fas fa-user"></i> <span th:text="Kijelentkezés"></span>
-                        </a>
+                    <!-- Ha be van jelentkezve -->
+                    <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item d-flex align-items-center" style="align-content: end">
+                    <a class="nav-link" th:href="@{'/logout'}">Kijelentkezés</a>
+                    </li>
+                    <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item d-flex align-items-center">
+                        <br><br><span class="navbar-text me-3">
+                            Bejelentkezve mint <span th:text="${#authentication.name}">Felhasználó</span>
+                        </span>
                     </li>
                 </ul>
             </div>

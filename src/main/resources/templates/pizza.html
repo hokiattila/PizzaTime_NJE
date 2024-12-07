@@ -36,8 +36,8 @@
                         <span th:if="${!pizza.vegetarianus}" class="text-danger">Nem vegetáriánus</span>
                     </p>
                     <!-- Form a rendeléshez -->
-                    <form th:action="@{/order}" method="post">
-                        <input type="hidden" name="pizzaName" th:value="${pizza.nev}">
+                    <form th:action="@{/cart/add}" method="post">
+                        <input type="hidden" name="pizzaNev" th:value="${pizza.nev}">
                         <div class="mb-3 text-center">
                             <label for="quantity" class="form-label">Db:</label>
                             <input type="number" class="form-control quantity-input mx-auto" id="quantity" name="quantity" value="1" min="1" required>

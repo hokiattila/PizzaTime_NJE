@@ -1,39 +1,30 @@
 package javagyakorlat.pizzatime.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "orders")
 public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int az; // Azonosító
+    private int az;
 
-    @Column(name = "pizzanev", nullable = false)
-    @NotBlank(message = "A pizza neve nem lehet üres")
-    @Size(max = 50, message = "A pizza neve legfeljebb 50 karakter hosszú lehet")
+    @Column(nullable = false)
     private String pizzanev;
 
-    @Column(name = "db", nullable = false)
-    @Min(value = 1, message = "Legalább 1 pizzát kell rendelni")
-    @Max(value = 100, message = "Egyszerre legfeljebb 100 pizzát rendelhet")
+    @Column(nullable = false)
+    private int userid;
+
+    @Column(nullable = false)
     private int db;
 
-    @Column(name = "felvetel", nullable = false)
-    @NotNull(message = "A rendelés felvételi ideje nem lehet üres")
+    @Column(nullable = false)
     private LocalDateTime felvetel;
 
-    @Column(name = "kiszallitas")
     private LocalDateTime kiszallitas;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userid", nullable = false)
-    @NotNull(message = "A rendeléshez tartoznia kell egy felhasználónak")
-    private User user; // Kapcsolat a User entitással
-
+    // Getters és Setters
     public int getAz() {
         return az;
     }
@@ -48,6 +39,14 @@ public class Orders {
 
     public void setPizzanev(String pizzanev) {
         this.pizzanev = pizzanev;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 
     public int getDb() {
@@ -72,13 +71,5 @@ public class Orders {
 
     public void setKiszallitas(LocalDateTime kiszallitas) {
         this.kiszallitas = kiszallitas;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
