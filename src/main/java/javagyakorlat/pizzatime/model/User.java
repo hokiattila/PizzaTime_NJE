@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -33,6 +33,7 @@ public class User {
     @Size(min = 6, message = "A jelszónak legalább 6 karakter hosszúnak kell lennie!")
     private String password;
 
+    @Column(nullable = false)
     private String permission;
 
     @Column(nullable = false)
