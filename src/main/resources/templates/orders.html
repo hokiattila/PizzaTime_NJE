@@ -14,7 +14,9 @@
     <thead>
     <tr>
       <th>Pizza név</th>
+      <th>Pizza kép</th> <!-- user táblából adat --> <!-- pizza táblából adat -->
       <th>Felhasználó ID</th>
+      <th>Felhasználó Email</th> <!-- user táblából adat --> <!-- pizza táblából adat -->
       <th>Darab</th>
       <th>Felvétel dátuma</th>
       <th>Kiszállítás dátuma</th>
@@ -23,7 +25,9 @@
     <tbody>
     <tr th:each="order : ${orders}">
       <td th:text="${order.pizzanev}"></td>
+      <td th:text="${order.pizzakep}"></td>
       <td th:text="${order.userid}"></td>
+      <td th:text="${order.useremail}"></td>
       <td th:text="${order.db}"></td>
       <td th:text="${order.felvetel}"></td>
       <td th:text="${order.kiszallitas}"></td>

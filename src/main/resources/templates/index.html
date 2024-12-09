@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +7,92 @@
 
     <!-- Bootstrap CSS -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Egyedi stílusok -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .carousel {
+            position: relative;
+        }
+        .carousel-text {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-align: center;
+            color: #fff;
+            background-color: #00000088;
+            text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+        }
+        .carousel-text h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        .carousel-inner img {
+            max-height: 400px;
+            padding: 10px 10px;
+            object-fit: cover;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 10px 10px;
+            background-color: #fff3cd;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            color: #d9534f;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            color: #5a5a5a;
+        }
+        .hero-section img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .action-button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #d9534f;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .action-button:hover {
+            background-color: #c9302c;
+        }
+        footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+        footer a {
+            color: #f8d7da;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
+
 <script th:if="${successLogin}" th:inline="javascript">
     toastr.options = {
         "closeButton": true,
@@ -30,19 +113,59 @@
     };
     toastr.success([[${successLogin}]]);
 </script>
-<!-- Navigációs bar beillesztése -->
+
+<!-- Navigációs bar -->
 <div th:replace="layout/navbar :: navbar"></div>
 
-<!-- Főoldal tartalma -->
-<div class="container">
-    <h1>Üdvözlünk a PizzaTime-on!</h1>
-    <p>Éhes vagy? Nézd meg ajánlatainkat!</p>
-    <img th:src="@{/img/pizzatime.gif}" alt="Pizza Time" class="img-fluid">
+<!-- Képgalléria szöveggel -->
+<div class="carousel" id="pizzaCarousel" data-bs-ride="carousel">
+    <!-- Fix szöveg -->
+    <div class="carousel-text">
+        <br><br>
+        <h1>Üdvözlünk a Pizza Time oldalon!</h1>
+        <br><br>
+    </div>
+    <!-- Képgalléria -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img th:src="@{/img/pizza_kep1.jpg}" class="d-block w-100" alt="Pizza 1">
+        </div>
+        <div class="carousel-item">
+            <img th:src="@{/img/pizza_kep2.webp}" class="d-block w-100" alt="Pizza 2">
+        </div>
+        <div class="carousel-item">
+            <img th:src="@{/img/pizza_kep3.jpg}" class="d-block w-100" alt="Pizza 3">
+        </div>
+    </div>
 </div>
+
+<!-- Főoldal tartalom -->
+<div class="container hero-section">
+    <h1>Jó helyen jársz!</h1>
+    <p>A legfinomabb pizzák és olasz ízek otthona. Nézd meg kínálatunkat, és találd meg a kedvenced!</p>
+
+    <a href="/pizza" class="action-button">Vásárlás</a>
+</div>
+
+<!-- Lábléc -->
+<footer>
+    <p>&copy; 2024 PizzaTime. Minden jog fenntartva. | <a href="/kapcsolat">Kapcsolat</a> | <a href="/aszf">ÁSZF</a></p>
+</footer>
 
 <!-- jQuery -->
 <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
 <!-- Bootstrap Bundle JS (tartalmazza a Popper.js-t is) -->
 <script th:src="@{/js/bootstrap.bundle.js}"></script>
+
+<script>
+    // Automatikus lapozás beállítása
+    document.addEventListener('DOMContentLoaded', () => {
+        const carousel = new bootstrap.Carousel('#pizzaCarousel', {
+            interval: 3000, // 3 másodpercenként vált
+            wrap: true
+        });
+    });
+</script>
+
 </body>
 </html>

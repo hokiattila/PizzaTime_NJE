@@ -27,4 +27,9 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
         return user.getId();
     }
+    public String findUserEmailById(int id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + id));
+        return user.getEmail();
+    }
 }

@@ -24,6 +24,11 @@ public class Orders {
 
     private LocalDateTime kiszallitas;
 
+    @Transient
+    public String pizzakep;
+    @Transient
+    public String useremail;
+
     // Getters és Setters
     public int getAz() {
         return az;
