@@ -35,6 +35,12 @@ CREATE TABLE Orders (
     FOREIGN KEY (userid) REFERENCES User(id) ON DELETE CASCADE
 );
 
+CREATE TABLE contact_form (
+    id INT PRIMARY KEY AUTO_INCREMENT,   -- Azonosító
+    username VARCHAR(50) DEFAULT 'Vendég',   -- Felhasználónév, ha nincs, akkor 'anonymous'
+    message TEXT NOT NULL,               -- Üzenet
+    date DATETIME NOT NULL               -- Üzenet küldésének dátuma
+);
 
 INSERT INTO Pizza (nev, img, ar, vegetarianus) VALUES
 ('Sajtos', 'sajtos.jpg', 2000, TRUE),

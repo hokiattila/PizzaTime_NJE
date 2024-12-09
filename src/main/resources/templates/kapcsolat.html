@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kapcsolat</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="layout/navbar :: navbar"></div>
+<div class="container mt-5">
+  <h1>Kapcsolat</h1>
+  <br> <br> <br> <br> <br> <br> <br>
+  <p>Kérdésed van? Küldj nekünk üzenetet!</p>
+
+  <!-- Sikeres mentés üzenet -->
+  <div th:if="${param.success}" class="alert alert-success" role="alert">
+    Üzeneted sikeresen elküldve!
+  </div>
+
+  <!-- Kapcsolat űrlap -->
+  <form th:action="@{/kapcsolat}" th:object="${contactForm}" method="post">
+    <div class="mb-3">
+      <label for="message" class="form-label">Üzenet</label>
+      <textarea id="message" name="message" class="form-control" th:field="*{message}" placeholder="Írd be az üzeneted..." required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Küldés</button>
+  </form>
+</div>
+<br> <br> <br> <br> <br> <br>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<!-- Footer -->
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

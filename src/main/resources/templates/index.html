@@ -71,24 +71,7 @@
         .action-button:hover {
             background-color: #c9302c;
         }
-        footer {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-            margin-top: 30px;
-        }
-        footer p {
-            margin: 0;
-            font-size: 1rem;
-        }
-        footer a {
-            color: #f8d7da;
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
+
     </style>
 </head>
 <body>
@@ -147,10 +130,8 @@
     <a href="/pizza" class="action-button">Vásárlás</a>
 </div>
 
-<!-- Lábléc -->
-<footer>
-    <p>&copy; 2024 PizzaTime. Minden jog fenntartva. | <a href="/kapcsolat">Kapcsolat</a> | <a href="/aszf">ÁSZF</a></p>
-</footer>
+<!-- Footer -->
+<div th:replace="layout/footer :: footer"></div>
 
 <!-- jQuery -->
 <script th:src="@{/js/jquery-3.7.1.min.js}"></script>

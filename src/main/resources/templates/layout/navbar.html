@@ -23,6 +23,9 @@
                         <a class="nav-link" href="/pizza">Ajánlataink</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/kapcsolat">Kapcsolat</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/cart">
                             <i class="fas fa-shopping-cart"></i> Kosár
                         </a>
@@ -37,6 +40,7 @@
                     <li th:if="${#authentication.name == 'anonymousUser'}" class="nav-item">
                         <a class="nav-link" href="/registration">Regisztráció</a>
                     </li>
+
                     <!-- Admin Panel menüpont -->
                     <li th:if="${#authentication.name == 'admin'}" class="nav-item">
                         <a class="nav-link" href="/orders">Rendelések</a>
@@ -55,6 +59,7 @@
         </div>
     </nav>
 </th:block>
+
 <!-- Lokális Bootstrap JS -->
 <script th:src="@{/js/bootstrap.bundle.js}"></script>
 </body>
