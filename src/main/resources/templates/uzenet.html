@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Üzenetek</title>
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+  <style>
+    .message-table {
+      margin-top: 20px;
+    }
+    .message-table th, .message-table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="layout/navbar :: navbar"></div>
+<div class="container">
+  <h1 class="my-4">Üzenetek</h1>
+  <table class="table table-striped table-bordered message-table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Küldő</th>
+      <th>Üzenet</th>
+      <th>Küldés ideje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="message : ${messages}">
+      <td th:text="${message.id}"></td>
+      <td th:text="${message.username}"></td>
+      <td th:text="${message.message}"></td>
+      <td th:text="${message.date}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>

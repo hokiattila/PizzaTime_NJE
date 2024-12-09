@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class ContactForm {
+public class ContactForm implements Comparable<ContactForm> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,5 +49,10 @@ public class ContactForm {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    @Override
+    public int compareTo(ContactForm o) {
+        return o.date.compareTo(this.date);
     }
 }
