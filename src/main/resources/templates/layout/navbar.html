@@ -9,6 +9,7 @@
 </head>
 <body>
 <th:block th:fragment="navbar">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <!-- Márka/logó -->
@@ -53,14 +54,38 @@
                     <a class="nav-link" th:href="@{'/logout'}">Kijelentkezés</a>
                     </li>
                     <li th:if="${#authentication.name != 'anonymousUser'}" class="nav-item d-flex align-items-center">
-                        <br><br><span class="navbar-text me-3">
-                            Bejelentkezve mint <span th:text="${#authentication.name}">Felhasználó</span>
-                        </span>
+                    <span
+                            class="navbar-text"
+                            style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 8px 15px; border-radius: 5px; font-size: 1rem; font-weight: bold; display: inline-block; text-align: center; white-space: nowrap;">
+                        Bejelentkezve mint <strong th:text="${#authentication.name}" style="color: #721c24;">Felhasználó</strong>
+                    </span>
                     </li>
+
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- Képgalléria szöveggel -->
+    <div class="carousel" id="pizzaCarousel" data-bs-ride="carousel">
+        <!-- Fix szöveg -->
+        <div class="carousel-text">
+            <br><br>
+            <h1>Üdvözlünk a Pizza Time oldalon!</h1>
+            <br><br>
+        </div>
+        <!-- Képgalléria -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img th:src="@{/img/pizza_kep1.jpg}" class="d-block w-100" alt="Pizza 1">
+            </div>
+            <div class="carousel-item">
+                <img th:src="@{/img/pizza_kep2.webp}" class="d-block w-100" alt="Pizza 2">
+            </div>
+            <div class="carousel-item">
+                <img th:src="@{/img/pizza_kep3.jpg}" class="d-block w-100" alt="Pizza 3">
+            </div>
+        </div>
+    </div>
 </th:block>
 
 <!-- Lokális Bootstrap JS -->

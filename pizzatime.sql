@@ -44,8 +44,8 @@ CREATE TABLE contact_form (
 
 INSERT INTO Pizza (nev, img, ar, vegetarianus) VALUES
 ('Sajtos', 'sajtos.jpg', 2000, TRUE),
-('Sonkás', 'sonkas.jpg', 2300, FALSE), 
-('Sonka-kukoricás', 'sonka_kukoricas.jpg', 2500, FALSE),
+('Szalámis', 'szalamis.jpg', 2300, FALSE), 
+('Bacon-ös', 'baconos.jpg', 2500, FALSE),
 ('Magyaros', 'magyaros.jpg', 2800, FALSE),
 ('Zöldséges', 'zoldseges.jpg', 2400, TRUE);
 
